@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rose Jewelers — Fine Jewelry, Plainly Explained</title>
+<meta name="description" content="Independent guides to rings, necklaces, and watches — with picks available at Jared, The Galleria of Jewelry.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,450;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal: #17181A;
+    --charcoal-2: #1F2023;
+    --ivory: #F3EDE4;
+    --ivory-dim: #C9C3B8;
+    --rose: #B76E79;
+    --rose-bright: #D98B96;
+    --wine: #4A2130;
+    --gold: #C9A96C;
+    --hairline: rgba(243,237,228,0.12);
+    --radius: 2px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--charcoal);
+    color:var(--ivory);
+    font-family:'Manrope', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    font-weight:450;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit; text-decoration:none;}
+  img,svg{display:block; max-width:100%;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  .eyebrow{
+    font-size:12px; text-transform:uppercase; letter-spacing:0.16em;
+    color:var(--rose-bright); font-weight:600;
+  }
+
+  /* ---------- Disclosure strip ---------- */
+  .disclosure-strip{
+    background:var(--wine); color:var(--ivory-dim);
+    font-size:12.5px; text-align:center; padding:8px 16px;
+    border-bottom:1px solid var(--hairline);
+  }
+  .disclosure-strip strong{color:var(--ivory);}
+
+  /* ---------- Nav ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(23,24,26,0.88); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--hairline);
+  }
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; height:76px;}
+  .logo{font-family:'Fraunces', serif; font-size:21px; letter-spacing:0.02em;}
+  .logo span{color:var(--rose-bright);}
+  .nav-links{display:flex; gap:36px; align-items:center;}
+  .nav-links a{font-size:14px; color:var(--ivory-dim); transition:color .2s;}
+  .nav-links a:hover{color:var(--rose-bright);}
+  .nav-cta{
+    background:var(--rose); color:var(--charcoal); font-weight:700;
+    font-size:13px; padding:11px 20px; border-radius:var(--radius);
+    transition:background .2s;
+  }
+  .nav-cta:hover{background:var(--rose-bright);}
+  .nav-toggle{display:none; background:none; border:none; color:var(--ivory); font-size:24px; cursor:pointer;}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:96px 0 88px; border-bottom:1px solid var(--hairline); overflow:hidden;}
+  .hero .wrap{display:grid; grid-template-columns:1fr 460px; gap:64px; align-items:center;}
+  .hero h1{font-size:52px; line-height:1.06; margin:18px 0 24px;}
+  .hero h1 em{font-style:italic; color:var(--rose-bright);}
+  .hero p{font-size:17px; color:var(--ivory-dim); max-width:480px; margin-bottom:32px;}
+  .hero-ctas{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--rose); color:var(--charcoal); font-weight:700; font-size:14px;
+    padding:14px 26px; border-radius:var(--radius); display:inline-flex; align-items:center; gap:8px;
+    transition: transform .15s, background .2s;
+  }
+  .btn-primary:hover{background:var(--rose-bright); transform:translateY(-1px);}
+  .btn-ghost{
+    border:1px solid var(--hairline); color:var(--ivory); font-size:14px; font-weight:600;
+    padding:13px 24px; border-radius:var(--radius); transition:border-color .2s, color .2s;
+  }
+  .btn-ghost:hover{border-color:var(--rose-bright); color:var(--rose-bright);}
+  .pending-badge{
+    font-size:10.5px; text-transform:uppercase; letter-spacing:0.08em;
+    background:rgba(201,169,108,0.16); color:var(--gold);
+    padding:2px 7px; border-radius:2px; margin-left:8px; font-weight:700;
+  }
+
+  /* ---------- Loupe hero art ---------- */
+  .loupe-stage{
+    position:relative; aspect-ratio:1/1; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #232427, #101113 70%);
+    border:1px solid var(--hairline); cursor:none;
+  }
+  .loupe-stage img{width:100%; height:100%; object-fit:contain; padding:14%;}
+  .lens{
+    position:absolute; width:150px; height:150px; border-radius:50%;
+    border:2px solid var(--gold);
+    box-shadow:0 0 0 6px rgba(23,24,26,0.85), 0 8px 30px rgba(0,0,0,0.5), inset 0 0 24px rgba(0,0,0,0.35);
+    background-repeat:no-repeat;
+    pointer-events:none; opacity:0; transition:opacity .15s;
+    display:flex; align-items:flex-end; justify-content:center;
+  }
+  .lens::after{
+    content:'4.6×'; font-size:10px; font-weight:700; color:var(--gold);
+    letter-spacing:0.06em; margin-bottom:8px; font-family:'Manrope',sans-serif;
+  }
+  .loupe-stage:hover .lens{opacity:1;}
+  .loupe-hint{
+    position:absolute; bottom:-34px; left:50%; transform:translateX(-50%);
+    font-size:12px; color:var(--ivory-dim); white-space:nowrap;
+  }
+
+  /* ---------- Section headers ---------- */
+  section{padding:88px 0;}
+  .sec-head{max-width:600px; margin-bottom:48px;}
+  .sec-head h2{font-size:34px; margin:14px 0 12px;}
+  .sec-head p{color:var(--ivory-dim); font-size:15.5px;}
+  .border-b{border-bottom:1px solid var(--hairline);}
+
+  /* ---------- Category grid ---------- */
+  .cat-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .cat-card{
+    background:var(--charcoal-2); border:1px solid var(--hairline); border-radius:var(--radius);
+    padding:32px 28px; transition:border-color .2s, transform .2s;
+  }
+  .cat-card:hover{border-color:var(--rose); transform:translateY(-3px);}
+  .cat-icon{width:40px; height:40px; margin-bottom:20px;}
+  .cat-card h3{font-size:21px; margin-bottom:10px;}
+  .cat-card p{font-size:14px; color:var(--ivory-dim); margin-bottom:22px; min-height:66px;}
+  .cat-link{font-size:13px; font-weight:700; color:var(--rose-bright); display:inline-flex; align-items:center; gap:6px;}
+  .cat-link:hover{color:var(--rose);}
+
+  /* ---------- 4Cs facets ---------- */
+  .facet-row{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
+  .facet{
+    position:relative; padding:34px 22px 26px; text-align:center;
+    background:linear-gradient(180deg, var(--charcoal-2), var(--charcoal));
+    clip-path:polygon(50% 0%, 100% 22%, 100% 78%, 50% 100%, 0% 78%, 0% 22%);
+    border:1px solid var(--hairline);
+  }
+  .facet .letter{font-family:'Fraunces',serif; font-size:30px; color:var(--rose-bright); margin-bottom:8px;}
+  .facet h4{font-size:15px; margin-bottom:8px; letter-spacing:0.02em;}
+  .facet p{font-size:12.5px; color:var(--ivory-dim); line-height:1.5;}
+
+  /* ---------- Picks ---------- */
+  .picks-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .pick-card{border:1px solid var(--hairline); border-radius:var(--radius); overflow:hidden; background:var(--charcoal-2);}
+  .pick-art{
+    aspect-ratio:4/3; background:radial-gradient(circle at 50% 40%, #26282b, #131416 75%);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .pick-body{padding:22px 22px 24px;}
+  .tier{
+    font-size:10.5px; text-transform:uppercase; letter-spacing:0.1em; font-weight:700;
+  }
+  .tier.everyday{color:#8FB39A;}
+  .tier.statement{color:var(--gold);}
+  .tier.heirloom{color:var(--rose-bright);}
+  .pick-body h4{font-size:18px; margin:10px 0 6px;}
+  .pick-body p{font-size:13.5px; color:var(--ivory-dim); margin-bottom:18px;}
+  .pick-cta{
+    display:flex; align-items:center; justify-content:space-between;
+    border-top:1px solid var(--hairline); padding-top:16px; font-size:13px;
+  }
+  .pick-cta a{font-weight:700; color:var(--rose-bright);}
+  .pick-cta a:hover{color:var(--rose);}
+  .price-range{color:var(--ivory-dim);}
+
+  /* ---------- Guide list ---------- */
+  .guide-strip{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:24px;
+  }
+  .guide-item{border-left:2px solid var(--rose); padding-left:20px;}
+  .guide-item h4{font-size:17px; margin-bottom:8px;}
+  .guide-item p{font-size:14px; color:var(--ivory-dim);}
+
+  /* ---------- Newsletter ---------- */
+  .newsletter{
+    background:linear-gradient(135deg, var(--wine), var(--charcoal-2));
+    border-radius:var(--radius); padding:56px; text-align:center;
+    border:1px solid var(--hairline);
+  }
+  .newsletter h2{font-size:28px; margin-bottom:12px;}
+  .newsletter p{color:var(--ivory-dim); margin-bottom:26px; font-size:15px;}
+  .nl-form{display:flex; gap:10px; max-width:420px; margin:0 auto; flex-wrap:wrap; justify-content:center;}
+  .nl-form input{
+    flex:1; min-width:220px; background:rgba(255,255,255,0.05); border:1px solid var(--hairline);
+    color:var(--ivory); padding:13px 16px; border-radius:var(--radius); font-size:14px; font-family:'Manrope',sans-serif;
+  }
+  .nl-form input::placeholder{color:var(--ivory-dim);}
+
+  /* ---------- Footer ---------- */
+  footer{border-top:1px solid var(--hairline); padding:56px 0 40px;}
+  .foot-grid{display:grid; grid-template-columns:2fr 1fr 1fr; gap:40px; margin-bottom:36px;}
+  .foot-grid h5{font-size:13px; text-transform:uppercase; letter-spacing:0.08em; color:var(--ivory-dim); margin-bottom:16px;}
+  .foot-grid a{display:block; font-size:14px; color:var(--ivory-dim); margin-bottom:10px;}
+  .foot-grid a:hover{color:var(--rose-bright);}
+  .foot-disclosure{font-size:12.5px; color:var(--ivory-dim); border-top:1px solid var(--hairline); padding-top:24px; line-height:1.7;}
+
+  @media (max-width:860px){
+    .hero .wrap{grid-template-columns:1fr; gap:48px;}
+    .loupe-stage{max-width:340px; margin:0 auto;}
+    .hero h1{font-size:38px;}
+    .cat-grid, .picks-grid, .facet-row, .guide-strip{grid-template-columns:1fr 1fr;}
+    .foot-grid{grid-template-columns:1fr; gap:28px;}
+    .nav-links{display:none;}
+    .nav-toggle{display:block;}
+  }
+  @media (max-width:560px){
+    .cat-grid, .picks-grid, .facet-row, .guide-strip{grid-template-columns:1fr;}
+    .hero{padding:56px 0;}
+    section{padding:64px 0;}
+    .newsletter{padding:36px 24px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="disclosure-strip">
+  <strong>Affiliate disclosure:</strong> Rose Jewelers is an independent guide. We may earn a commission if you shop through links to Jared.
+</div>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">ROSE <span>JEWELERS</span></div>
+    <div class="nav-links">
+      <a href="#rings">Rings</a>
+      <a href="#necklaces">Necklaces</a>
+      <a href="#watches">Watches</a>
+      <a href="#guides">Guides</a>
+      <a href="#about">About</a>
+    </div>
+    <a class="nav-cta" href="#" data-aff="homepage">Shop at Jared</a>
+    <button class="nav-toggle" aria-label="Menu">&#9776;</button>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Independent jewelry guides</div>
+      <h1>Fine jewelry,<br><em>plainly explained.</em></h1>
+      <p>We break down cut, clarity, karat, and movement in plain language, then point you to specific pieces worth considering at Jared — no showroom pressure, no jargon.</p>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="#rings">Browse the guides &#8594;</a>
+        <a class="btn-ghost" href="#" data-aff="homepage">Visit Jared <span class="pending-badge">Pending</span></a>
+      </div>
+    </div>
+    <div>
+      <div class="loupe-stage" id="loupeStage">
+        <img id="loupeImg" alt="Illustration of a rose gold solitaire ring with a faceted diamond" src="">
+        <div class="lens" id="lens"></div>
+      </div>
+      <div class="loupe-hint">Move your cursor over the ring — inspect it like a jeweler would</div>
+    </div>
+  </div>
+</header>
+
+<section id="rings" class="border-b">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Shop by category</div>
+      <h2>Start with what you're actually shopping for.</h2>
+      <p>Three categories, three different sets of questions worth asking before you buy.</p>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card">
+        <svg class="cat-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="26" r="11" stroke="#D98B96" stroke-width="2"/><path d="M13 15L20 4L27 15" stroke="#C9A96C" stroke-width="2" stroke-linejoin="round"/></svg>
+        <h3>Rings</h3>
+        <p>Engagement, wedding bands, and everyday stacking rings — how to think about the 4Cs before you commit.</p>
+        <a class="cat-link" href="#guides" data-aff="rings">See ring picks at Jared &#8594; <span class="pending-badge">Pending</span></a>
+      </div>
+      <div class="cat-card" id="necklaces">
+        <svg class="cat-icon" viewBox="0 0 40 40" fill="none"><path d="M6 8C6 20 34 20 34 8" stroke="#D98B96" stroke-width="2"/><circle cx="20" cy="24" r="4" fill="#C9A96C"/></svg>
+        <h3>Necklaces</h3>
+        <p>Chain types, pendant proportions, and layering rules that keep a stack looking intentional, not cluttered.</p>
+        <a class="cat-link" href="#guides" data-aff="necklaces">See necklace picks at Jared &#8594; <span class="pending-badge">Pending</span></a>
+      </div>
+      <div class="cat-card" id="watches">
+        <svg class="cat-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="13" stroke="#D98B96" stroke-width="2"/><path d="M20 13V20L25 23" stroke="#C9A96C" stroke-width="2" stroke-linecap="round"/></svg>
+        <h3>Watches</h3>
+        <p>Movement basics (quartz vs. automatic), case sizing, and how to read a spec sheet without the sales pitch.</p>
+        <a class="cat-link" href="#guides" data-aff="watches">See watch picks at Jared &#8594; <span class="pending-badge">Pending</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="guides" class="border-b">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Diamond basics</div>
+      <h2>The 4Cs, in one pass.</h2>
+      <p>Every diamond gets graded on these four things. Here's what actually moves the price — and what's often oversold.</p>
+    </div>
+    <div class="facet-row">
+      <div class="facet"><div class="letter">Cut</div><h4>Light performance</h4><p>Governs sparkle. A well-cut smaller stone often reads brighter than a poorly cut larger one.</p></div>
+      <div class="facet"><div class="letter">Color</div><h4>Graded D–Z</h4><p>Near-colorless (G–J) is where most value hides — the difference is nearly invisible set in gold.</p></div>
+      <div class="facet"><div class="letter">Clarity</div><h4>Internal marks</h4><p>Eye-clean (VS2 and up, typically) means inclusions aren't visible without magnification.</p></div>
+      <div class="facet"><div class="letter">Carat</div><h4>Weight, not size</h4><p>Price jumps sharply at whole and half-carat marks — shopping just under one can save real money.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="border-b">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Featured picks</div>
+      <h2>Worth a closer look.</h2>
+      <p>A working list — we'll keep it current as pieces come in and out of stock.</p>
+    </div>
+    <div class="picks-grid">
+      <div class="pick-card">
+        <div class="pick-art"><svg width="80" height="80" viewBox="0 0 80 80" fill="none"><circle cx="40" cy="46" r="22" stroke="#D98B96" stroke-width="2"/><path d="M25 26L40 6L55 26" stroke="#C9A96C" stroke-width="2" stroke-linejoin="round"/></svg></div>
+        <div class="pick-body">
+          <div class="tier everyday">Everyday</div>
+          <h4>Rose Gold Stacking Band</h4>
+          <p>A slim, low-profile band built to layer — the one we'd recommend to a first-time jewelry buyer.</p>
+          <div class="pick-cta"><span class="price-range">$150–$400</span><a href="#" data-aff="rings">View at Jared &#8594;</a></div>
+        </div>
+      </div>
+      <div class="pick-card">
+        <div class="pick-art"><svg width="80" height="80" viewBox="0 0 80 80" fill="none"><path d="M12 16C12 40 68 40 68 16" stroke="#D98B96" stroke-width="2"/><circle cx="40" cy="48" r="7" fill="#C9A96C"/></svg></div>
+        <div class="pick-body">
+          <div class="tier statement">Statement</div>
+          <h4>Diamond Pendant, 18" Chain</h4>
+          <p>A single solitaire pendant sized to sit right at the collarbone — reads as one clean point of light.</p>
+          <div class="pick-cta"><span class="price-range">$600–$1,200</span><a href="#" data-aff="necklaces">View at Jared &#8594;</a></div>
+        </div>
+      </div>
+      <div class="pick-card">
+        <div class="pick-art"><svg width="80" height="80" viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="26" stroke="#D98B96" stroke-width="2"/><path d="M40 26V40L50 46" stroke="#C9A96C" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="pick-body">
+          <div class="tier heirloom">Heirloom</div>
+          <h4>Automatic Dress Watch</h4>
+          <p>A mechanical movement with a display caseback — the kind of piece that's meant to outlast a trend cycle.</p>
+          <div class="pick-cta"><span class="price-range">$1,800+</span><a href="#" data-aff="watches">View at Jared &#8594;</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="border-b">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Quick reference</div>
+      <h2>Before you shop.</h2>
+    </div>
+    <div class="guide-strip">
+      <div class="guide-item"><h4>Ring sizing</h4><p>Sizes shift with temperature and time of day — get measured in the evening, when fingers are at their largest.</p></div>
+      <div class="guide-item"><h4>Chain length</h4><p>16" sits at the collarbone, 18" just below it, 20"+ drapes into the neckline — measure an existing piece you like.</p></div>
+      <div class="guide-item"><h4>Watch fit</h4><p>Case width should roughly match wrist width in inches converted to mm — a 6.5" wrist usually suits 36–40mm.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="newsletter">
+      <h2>New guides, once a month.</h2>
+      <p>No spam, no daily sales blasts — just the buying guides and picks worth your time.</p>
+      <form class="nl-form" onsubmit="event.preventDefault(); alert('Thanks — you are on the list.');">
+        <input type="email" placeholder="you@email.com" required>
+        <button class="btn-primary" type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo" style="margin-bottom:14px;">ROSE <span>JEWELERS</span></div>
+        <p style="color:var(--ivory-dim); font-size:14px; max-width:320px;">Independent buying guides for rings, necklaces, and watches. We link out to retailers we've researched — including Jared — and may earn a commission on qualifying purchases.</p>
+      </div>
+      <div>
+        <h5>Shop</h5>
+        <a href="#rings">Rings</a>
+        <a href="#necklaces">Necklaces</a>
+        <a href="#watches">Watches</a>
+      </div>
+      <div>
+        <h5>Guides</h5>
+        <a href="#guides">The 4Cs</a>
+        <a href="#about">Ring sizing</a>
+        <a href="#about">Chain lengths</a>
+      </div>
+    </div>
+    <div class="foot-disclosure">
+      Rose Jewelers is a participant in the Jared affiliate program via CJ Affiliate. As an affiliate, we may earn commissions from qualifying purchases made through links on this site, at no additional cost to you. Product availability and pricing are set by the retailer and subject to change. &copy; <span id="year"></span> Rose Jewelers.
+    </div>
+  </div>
+</footer>
+
+<script>
+/* =========================================================================
+   AFFILIATE LINK CONFIG — CJ Affiliate / Jared
+   -------------------------------------------------------------------------
+   Status: application submitted, awaiting CJ approval for the Jared program.
+   Until approved, every link below resolves to '#' and shows a small
+   "Pending" badge in the UI so it's obvious which links still need swapping.
+
+   Once approved, CJ will give you:
+     1. A Publisher ID (PID) — looks like a 7-digit number.
+     2. A tracking domain for Jared specifically (CJ advertisers each use one
+        of a handful of domains, commonly things like www.dpbolvw.net,
+        www.jdoqocy.com, www.tkqlhce.com, www.anrdoezrs.net, or www.kqzyfj.com —
+        CJ's dashboard will tell you exactly which one Jared uses).
+     3. A destination URL structure, generally:
+        https://{tracking-domain}/click-{PID}-{advertiser-link-id}
+        sometimes with a &url= param pointing at a specific Jared category
+        or product page.
+
+   HOW TO ACTIVATE:
+     1. Log into CJ Affiliate > Advertisers > Jared > Links, and generate
+        deep links for: homepage, rings, necklaces, watches (or specific
+        product pages if you want the "Featured picks" to link direct).
+     2. Paste each generated URL into the matching slot in `links` below.
+     3. That's it — every button/link with a matching data-aff attribute
+        will pick it up automatically, and the "Pending" badges disappear.
+   ========================================================================= */
+const AFFILIATE_CONFIG = {
+  cjPublisherId: 'REPLACE_WITH_YOUR_CJ_PID',
+  links: {
+    homepage:  '#PENDING_CJ_APPROVAL',
+    rings:     '#PENDING_CJ_APPROVAL',
+    necklaces: '#PENDING_CJ_APPROVAL',
+    watches:   '#PENDING_CJ_APPROVAL'
+  }
+};
+
+function isPending(url){
+  return !url || url.startsWith('#PENDING');
+}
+
+function wireAffiliateLinks(){
+  document.querySelectorAll('[data-aff]').forEach(function(el){
+    var key = el.getAttribute('data-aff');
+    var url = AFFILIATE_CONFIG.links[key];
+    if (!isPending(url)) {
+      el.setAttribute('href', url);
+      el.setAttribute('rel', 'sponsored noopener');
+      el.setAttribute('target', '_blank');
+      var badge = el.querySelector('.pending-badge');
+      if (badge) badge.remove();
+    }
+  });
+}
+
+/* ---------- Loupe hero art: inline SVG ring, rendered as a data URI so the
+   same image can back both the <img> and the magnifier lens ---------- */
+var ringSVG = `
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'>
+  <defs>
+    <radialGradient id='bg' cx='40%' cy='35%' r='75%'>
+      <stop offset='0%' stop-color='#242529'/>
+      <stop offset='100%' stop-color='#111214'/>
+    </radialGradient>
+    <linearGradient id='band' x1='0%' y1='0%' x2='0%' y2='100%'>
+      <stop offset='0%' stop-color='#D98B96'/>
+      <stop offset='100%' stop-color='#8C4A56'/>
+    </linearGradient>
+    <linearGradient id='gem1' x1='0%' y1='0%' x2='100%' y2='100%'>
+      <stop offset='0%' stop-color='#FFFFFF' stop-opacity='0.95'/>
+      <stop offset='100%' stop-color='#C9A96C' stop-opacity='0.55'/>
+    </linearGradient>
+  </defs>
+  <rect width='400' height='400' fill='url(#bg)'/>
+  <path d='M120 260 A80 80 0 1 0 280 260' fill='none' stroke='url(#band)' stroke-width='18'/>
+  <polygon points='200,110 240,165 225,225 175,225 160,165' fill='url(#gem1)' stroke='#F3EDE4' stroke-width='1.5'/>
+  <polygon points='200,110 175,225 200,225' fill='#FFFFFF' fill-opacity='0.25'/>
+  <polygon points='200,110 240,165 200,165' fill='#FFFFFF' fill-opacity='0.45'/>
+  <polygon points='160,165 200,165 175,225' fill='#C9A96C' fill-opacity='0.35'/>
+  <polygon points='240,165 200,165 225,225' fill='#8C4A56' fill-opacity='0.5'/>
+  <line x1='200' y1='110' x2='200' y2='165' stroke='#F3EDE4' stroke-width='1' stroke-opacity='0.5'/>
+  <line x1='160' y1='165' x2='240' y2='165' stroke='#F3EDE4' stroke-width='1' stroke-opacity='0.5'/>
+</svg>`;
+var ringDataURI = 'data:image/svg+xml;base64,' + btoa(ringSVG);
+
+function setupLoupe(){
+  var img = document.getElementById('loupeImg');
+  var stage = document.getElementById('loupeStage');
+  var lens = document.getElementById('lens');
+  img.src = ringDataURI;
+  lens.style.backgroundImage = "url(" + ringDataURI + ")";
+
+  var zoom = 2.6;
+  stage.addEventListener('mousemove', function(e){
+    var rect = stage.getBoundingClientRect();
+    var x = e.clientX - rect.left;
+    var y = e.clientY - rect.top;
+    var lensSize = lens.offsetWidth;
+
+    lens.style.left = (x - lensSize/2) + 'px';
+    lens.style.top = (y - lensSize/2) + 'px';
+
+    var bgW = rect.width * zoom;
+    var bgH = rect.height * zoom;
+    var bgX = -(x * zoom - lensSize/2);
+    var bgY = -(y * zoom - lensSize/2);
+    lens.style.backgroundSize = bgW + 'px ' + bgH + 'px';
+    lens.style.backgroundPosition = bgX + 'px ' + bgY + 'px';
+  });
+
+  /* touch fallback: keep lens hidden, tap toggles a gentle pulse instead of hover-zoom */
+  stage.addEventListener('touchstart', function(){
+    stage.style.transform = 'scale(1.02)';
+    setTimeout(function(){ stage.style.transform = ''; }, 200);
+  });
+}
+
+document.getElementById('year').textContent = new Date().getFullYear();
+wireAffiliateLinks();
+setupLoupe();
+</script>
+
+</body>
+</html>
