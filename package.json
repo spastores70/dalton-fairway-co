@@ -1,0 +1,7 @@
+{
+  "name": "dalton-fairway-company",
+  "private": true,
+  "scripts": {
+    "build": "node build.mjs"
+  }
+}
